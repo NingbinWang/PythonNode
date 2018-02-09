@@ -40,10 +40,12 @@ menubar.add_cascade(label='about',menu=aboutmenu)
 toolbar = Frame(root,height=25,bg='light sea green')
 shortButton = Button(toolbar,text = 'open')
 shortButton.pack(side=LEFT,padx = 5,pady = 5)
-
 shortButton = Button(toolbar,text = 'save')
 shortButton.pack(side=LEFT,padx = 5,pady = 5)
-
 toolbar.pack(fill=X,expand=NO)
+
+#Status Bar
+status = Label(root,text = 'Ln20',bd=1,relief=SUNKEN,anchor=W)
+status.pack(side=BOTTOM,fill=X)
 
 root.mainloop()
