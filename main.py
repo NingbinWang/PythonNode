@@ -30,10 +30,20 @@ editmenu.add_command(label='find',accelerator='Ctrl+F')
 editmenu.add_command(label='select',accelerator='Ctrl+A')
 menubar.add_cascade(label='edit',menu=editmenu)
 
+#about menu
 aboutmenu = Menu(menubar)
 aboutmenu.add_command(label='author')
 aboutmenu.add_command(label='copyright')
 menubar.add_cascade(label='about',menu=aboutmenu)
 
+#toolbar
+toolbar = Frame(root,height=25,bg='light sea green')
+shortButton = Button(toolbar,text = 'open')
+shortButton.pack(side=LEFT,padx = 5,pady = 5)
+
+shortButton = Button(toolbar,text = 'save')
+shortButton.pack(side=LEFT,padx = 5,pady = 5)
+
+toolbar.pack(fill=X,expand=NO)
 
 root.mainloop()
