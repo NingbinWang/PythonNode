@@ -64,6 +64,22 @@ def redo():
 def undo():
     textPad.event_generate('<<Undo>>')
 
+def selectAll():
+    textPad.tag_add('sel','1.0',END)
+
+def search():
+    topsearch= Toplevel(root)
+    topsearch.geometry('220x90+200+250')
+    label1=Label(topsearch,text='Find in document')
+    label1.grid(row=0,column=1,padx=5)
+    entry1 =Entry(topsearch,width=30)
+    entry1.grid(row=1,column=1,padx=5)
+    button1=Button(topsearch,text='find')
+    button1.grid(row=2,column=1)
+
+
+
+
 root =Tk()
 root.title('Node')
 root.geometry('500x500+100+100')
@@ -89,8 +105,8 @@ editmenu.add_command(label='cut',accelerator='Ctrl+X',command=cut)
 editmenu.add_command(label='copy',accelerator='Ctrl+C',command=copy)
 editmenu.add_command(label='paste',accelerator='Ctrl+V',command=paste)
 editmenu.add_separator()
-editmenu.add_command(label='find',accelerator='Ctrl+F')
-editmenu.add_command(label='select',accelerator='Ctrl+A')
+editmenu.add_command(label='find',accelerator='Ctrl+F',command=search)
+editmenu.add_command(label='selectall',accelerator='Ctrl+A',command=selectAll)
 menubar.add_cascade(label='edit',menu=editmenu)
 
 #about menu
@@ -103,7 +119,7 @@ menubar.add_cascade(label='about',menu=aboutmenu)
 toolbar = Frame(root,height=25,bg='light sea green')
 shortButton = Button(toolbar,text = 'open', command=openfile)
 shortButton.pack(side=LEFT,padx = 5,pady = 5)
-shortButton = Button(toolbar,text = 'save')
+shortButton = Button(toolbar,text = 'save',command=save)
 shortButton.pack(side=LEFT,padx = 5,pady = 5)
 toolbar.pack(fill=X,expand=NO)
 
