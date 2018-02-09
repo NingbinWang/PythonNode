@@ -24,6 +24,11 @@ def openfile():
         textPad.insert(1.0,fd.read())
         fd.close()
 
+def newfile():
+    global filename
+    root.title('unnamed file')
+    filename = None
+    textPad.delete(1.0,END)
 
 root =Tk()
 root.title('Node')
@@ -35,7 +40,7 @@ root.config(menu = menubar)
 
 #file menu
 filemenu = Menu(menubar)
-filemenu.add_command(label='new file',accelerator='Ctrl+N')
+filemenu.add_command(label='new file',accelerator='Ctrl+N',command=newfile)
 filemenu.add_command(label='open file',accelerator = 'Ctrl + O',command=openfile)
 filemenu.add_command(label='save file',accelerator = 'Ctrl + S')
 filemenu.add_command(label='save as file',accelerator = 'Ctrl + Shift + S')
