@@ -1,10 +1,8 @@
+# -*- encoding: utf8 -8-
 from Tkinter import *
 import tkMessageBox as tkmg
 import tkFileDialog as tkfd
 import os
-# -*- encoding: utf8 -8-
-
-
 
 def author():
     tkmg.showinfo('author','this software was created by Tianya')
@@ -29,6 +27,27 @@ def newfile():
     root.title('unnamed file')
     filename = None
     textPad.delete(1.0,END)
+def save():
+    global filename
+    try:
+        fd=open(filename,'w')
+        msg = textPad.get(1.0,END)
+        fd.close()
+    except:
+        saveas()
+
+def saveas():
+    fd = tkfd.asksaveasfilename(initialfile="unnamed file.txt",defaultextension = '.txt')
+    global filename
+    filename = fd
+    if filename == '':
+        filename = None
+    else:
+        fd1 = open(fd,'w')
+        msg =  textPad.get(1.0,END)
+        fd1.write(msg)
+        fd1.close()
+        root.title('FileName:'+os.path.basename(fd))
 
 root =Tk()
 root.title('Node')
@@ -42,8 +61,8 @@ root.config(menu = menubar)
 filemenu = Menu(menubar)
 filemenu.add_command(label='new file',accelerator='Ctrl+N',command=newfile)
 filemenu.add_command(label='open file',accelerator = 'Ctrl + O',command=openfile)
-filemenu.add_command(label='save file',accelerator = 'Ctrl + S')
-filemenu.add_command(label='save as file',accelerator = 'Ctrl + Shift + S')
+filemenu.add_command(label='save file',accelerator = 'Ctrl + S',command=save)
+filemenu.add_command(label='save as file',accelerator = 'Ctrl + Shift + S',command=saveas)
 menubar.add_cascade(label='file',menu=filemenu)
 
 #edit menu
