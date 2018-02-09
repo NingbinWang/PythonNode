@@ -48,4 +48,15 @@ toolbar.pack(fill=X,expand=NO)
 status = Label(root,text = 'Ln20',bd=1,relief=SUNKEN,anchor=W)
 status.pack(side=BOTTOM,fill=X)
 
+#linenumber&test
+lnlabel=Label(root,width=2,bg='antique white')
+lnlabel.pack(side=LEFT,fill = Y)
+
+textPad= Text(root,undo=True)
+textPad.pack(expand=YES,fill=BOTH)
+
+scroll = Scrollbar(textPad)
+textPad.config(yscrollcommand=scroll.set)
+scroll.config(command=textPad.yview)
+scroll.pack(side=RIGHT,fill=Y)
 root.mainloop()
