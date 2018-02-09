@@ -49,6 +49,21 @@ def saveas():
         fd1.close()
         root.title('FileName:'+os.path.basename(fd))
 
+def cut():
+    textPad.event_generate('<<Cut>>')
+
+def copy():
+    textPad.event_generate('<<Copy>>')
+
+def paste():
+    textPad.event_generate('<<Paste>>')
+
+def redo():
+    textPad.event_generate('<<Redo>>')
+
+def undo():
+    textPad.event_generate('<<Undo>>')
+
 root =Tk()
 root.title('Node')
 root.geometry('500x500+100+100')
@@ -67,12 +82,12 @@ menubar.add_cascade(label='file',menu=filemenu)
 
 #edit menu
 editmenu= Menu(menubar)
-editmenu.add_command(label='undo',accelerator='Ctrl+Z')
-editmenu.add_command(label='rset',accelerator='Ctrl+Y')
+editmenu.add_command(label='undo',accelerator='Ctrl+Z',command=undo)
+editmenu.add_command(label='redo',accelerator='Ctrl+Y',command=redo)
 editmenu.add_separator()
-editmenu.add_command(label='shear',accelerator='Ctrl+X')
-editmenu.add_command(label='copy',accelerator='Ctrl+C')
-editmenu.add_command(label='paste',accelerator='Ctrl+V')
+editmenu.add_command(label='cut',accelerator='Ctrl+X',command=cut)
+editmenu.add_command(label='copy',accelerator='Ctrl+C',command=copy)
+editmenu.add_command(label='paste',accelerator='Ctrl+V',command=paste)
 editmenu.add_separator()
 editmenu.add_command(label='find',accelerator='Ctrl+F')
 editmenu.add_command(label='select',accelerator='Ctrl+A')
