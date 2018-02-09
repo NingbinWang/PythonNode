@@ -1,5 +1,29 @@
 from Tkinter import *
+import tkMessageBox as tkmg
+import tkFileDialog as tkfd
+import os
 # -*- encoding: utf8 -8-
+
+
+
+def author():
+    tkmg.showinfo('author','this software was created by Tianya')
+
+def about():
+    tkmg.showinfo('Copyright','this software was owned by Tianya')
+
+def openfile():
+    global filename
+    filename = tkfd.askopenfilename(defaultextension = '.txt')
+    if filename == '':
+        filename = None
+    else:
+        root.title('FileNmae:'+os.path.basename(filename))
+        textPad.delete(1.0,END)
+        fd = open(filename,'r')
+        textPad.insert(1.0,fd.read())
+        fd.close()
+
 
 root =Tk()
 root.title('Node')
@@ -12,7 +36,7 @@ root.config(menu = menubar)
 #file menu
 filemenu = Menu(menubar)
 filemenu.add_command(label='new file',accelerator='Ctrl+N')
-filemenu.add_command(label='open file',accelerator = 'Ctrl + O')
+filemenu.add_command(label='open file',accelerator = 'Ctrl + O',command=openfile)
 filemenu.add_command(label='save file',accelerator = 'Ctrl + S')
 filemenu.add_command(label='save as file',accelerator = 'Ctrl + Shift + S')
 menubar.add_cascade(label='file',menu=filemenu)
@@ -32,13 +56,13 @@ menubar.add_cascade(label='edit',menu=editmenu)
 
 #about menu
 aboutmenu = Menu(menubar)
-aboutmenu.add_command(label='author')
-aboutmenu.add_command(label='copyright')
+aboutmenu.add_command(label='author',command=author)
+aboutmenu.add_command(label='copyright',command=about)
 menubar.add_cascade(label='about',menu=aboutmenu)
 
 #toolbar
 toolbar = Frame(root,height=25,bg='light sea green')
-shortButton = Button(toolbar,text = 'open')
+shortButton = Button(toolbar,text = 'open', command=openfile)
 shortButton.pack(side=LEFT,padx = 5,pady = 5)
 shortButton = Button(toolbar,text = 'save')
 shortButton.pack(side=LEFT,padx = 5,pady = 5)
