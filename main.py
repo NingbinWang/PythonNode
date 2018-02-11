@@ -67,6 +67,13 @@ def undo():
 def selectAll():
     textPad.tag_add('sel','1.0',END)
 
+def serchbtn(str):
+        where=textPad.search(str,'1.0',END)
+        if where:
+            textPad.tag_add('tag1',where)
+            textPad.tag_config('tag1',foreground='light sea green')
+
+
 def search():
     topsearch= Toplevel(root)
     topsearch.geometry('220x90+200+250')
@@ -74,7 +81,7 @@ def search():
     label1.grid(row=0,column=1,padx=5)
     entry1 =Entry(topsearch,width=30)
     entry1.grid(row=1,column=1,padx=5)
-    button1=Button(topsearch,text='find')
+    button1=Button(topsearch,text='find',command=lambda:serchbtn(entry1.get()))
     button1.grid(row=2,column=1)
 
 
